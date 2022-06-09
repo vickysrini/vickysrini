@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+/* The grid: Four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 25%;
+  padding: 10px;
+}
+
+/* Style the images inside the grid */
+.column img {
+  opacity: 0.8; 
+  cursor: pointer; 
+}
+
+.column img:hover {
+  opacity: 1;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* The expanding image container */
+.container {
+  position: relative;
+  display: none;
+}
+
+/* Expanding image text */
+#imgtext {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  font-size: 20px;
+}
+
+/* Closable button inside the expanded image */
+.closebtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div style="text-align:center">
+  <h2>Image Gallery</h2>
+  <p>CUSTOMERS IMAGES :CLICK ON GTHE IMAGES IT WILL BLOW UP</p>
+</div>
+
+<!-- The four columns -->
+<div class="row">
+  <div class="column">
+    <img src="https://media.istockphoto.com/photos/smiling-taxi-driver-showing-empty-card-by-looking-at-camera-in-front-picture-id1368412534?k=20&m=1368412534&s=612x612&w=0&h=vENYYsng6gvwG4WQA6TzSOUVsmbl7IOrg_t5MyKuG1I=" alt="Nature" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="https://media.istockphoto.com/photos/woman-driving-car-picture-id1133366361?k=20&m=1133366361&s=612x612&w=0&h=f--3X7j02mNyDtn_0OF_hRk7faefrak8sbi6PZBwIYk=" alt="Snow" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="https://media.istockphoto.com/photos/selective-focus-of-cars-at-european-dealership-picture-id186149483?k=20&m=186149483&s=612x612&w=0&h=SjsY2pPz33d6RuLdg8k-cRUoom6YZiijc19Uu_OGEi0=" alt="Mountains" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="https://media.istockphoto.com/photos/going-on-a-vacation-stock-image-picture-id1097842194?k=20&m=1097842194&s=612x612&w=0&h=4UsSiJHp16OWgJIzpu9kNt6eCzHlVWrINOTGRoxhfXI=" alt="Lights" style="width:100%" onclick="myFunction(this);">
+  </div>
+</div>
+
+<div class="container">
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+  <img id="expandedImg" style="width:100%">
+  <div id="imgtext"></div>
+</div>
+
+<div class="row">
+  <div class="column">
+    <img src="https://media.istockphoto.com/photos/man-talking-on-the-smartphone-and-driving-a-car-picture-id903369650?k=20&m=903369650&s=612x612&w=0&h=MBdFjtbwoTrMmqNLTH6xlPE76lVtzc2v3mjjMey2AC8=" alt="Nature" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="https://media.istockphoto.com/photos/mother-and-daughter-on-a-road-trip-picture-id640135994?k=20&m=640135994&s=612x612&w=0&h=73qNjJCCZYt6ypR65ztQjBn_0UZyWS72LKOyf_FMO5w=" alt="Snow" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="https://media.istockphoto.com/photos/roadtrippers-picture-id1254080385?k=20&m=1254080385&s=612x612&w=0&h=rrszpVWzCxYd0ohMpo0w9g9WqlOCDi1zCiklbyLgKVk=" alt="Mountains" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="https://media.istockphoto.com/photos/mother-and-children-going-on-a-road-trip-picture-id1281145169?k=20&m=1281145169&s=612x612&w=0&h=E5-v5VtJj_jluMn6bNWlLWfPm9qGa7xMEGLBfnCr6g4=" alt="Lights" style="width:100%" onclick="myFunction(this);">
+  </div>
+</div>
+
+<div class="container">
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+  <img id="expandedImg" style="width:100%">
+  <div id="imgtext"></div>
+</div>
+
+<div class="row">
+    <div class="column">
+      <img src="https://media.istockphoto.com/photos/new-driver-picture-id1127393632?k=20&m=1127393632&s=612x612&w=0&h=SFe3Oe1U-2KUgbbesNMSNKtpkFvygKXs-BW6zekjU3E=" alt="Nature" style="width:100%" onclick="myFunction(this);">
+    </div>
+    <div class="column">
+        <img src="https://media.istockphoto.com/photos/happy-man-looking-the-city-at-night-picture-id1040308848?k=20&m=1040308848&s=612x612&w=0&h=T_2qDNCGBqPQfb4tvjj_ZQSaWwZdxcBQs2zXh3G1FWE=" alt="Nature" style="width:100%" onclick="myFunction(this);">
+      </div>
+      <div class="column">
+        <img src="https://media.istockphoto.com/photos/arab-women-driving-car-picture-id1194678331?k=20&m=1194678331&s=612x612&w=0&h=LHtm3WCZ7JwV2kgGMd8P3s84BR2l-vloykZa9s9KgEk=" alt="Nature" style="width:100%" onclick="myFunction(this);">
+      </div>
+      <div class="column">
+        <img src="https://media.istockphoto.com/photos/road-trip-with-my-best-friend-picture-id1324380685?k=20&m=1324380685&s=612x612&w=0&h=PDYEHyo9oQCgc8ZUkt1UESyJaNeSxfGHg0WYivoruWI=" alt="Nature" style="width:100%" onclick="myFunction(this);">
+      </div>
+   
+  </div>
+  
+  <div class="container">
+    <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+    <img id="expandedImg" style="width:100%">
+    <div id="imgtext"></div>
+  </div>
+
+<script>
+function myFunction(imgs) {
+  var expandImg = document.getElementById("expandedImg");
+  var imgText = document.getElementById("imgtext");
+  expandImg.src = imgs.src;
+  imgText.innerHTML = imgs.alt;
+  expandImg.parentElement.style.display = "block";
+}
+</script>
+
+</body>
+</html>

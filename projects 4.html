@@ -1,0 +1,691 @@
+<html>
+    <head>
+        <title>Rented Cars</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <meta charset="UTF-8">
+        <meta http-equive="X-UA-Compatible" content="IE=edge">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+    </head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "poppins",sans-serif;
+            scroll-padding: 2rem;
+            scroll-behavior: smooth;
+            list-style: none;
+            text-decoration: none;
+        }
+        :root{
+            --main-color:#fe5b3d;
+            --second-color:#ffac38;
+            --text-color:#444;
+            --gradient:linear-gradient(#fe5b3d,#ffac38);
+        }
+        /* custom scroll bar */
+        html::-webkit-scrollbar{
+            width: 0.5rem;
+        }
+        html::-webkit-scrollbar-track{
+            background: transparent;
+        }
+        html::-webkit-scrollbar-thumb{
+            background: var(--main-color);
+            border-radius: 5rem;
+        }
+        section{
+            padding: 50px 100px;
+        }
+        header{
+            position: fixed;
+            width: 100%;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #eeeff1;
+            padding: 15px 100px;
+        }
+        .logo img{
+            width: 60px;
+        }
+        .navbar{
+            display: flex;
+        }
+        .navbar li{
+            position: relative;
+        }
+        .navbar a{
+            font-size: 1rem;
+            padding: 10px 20px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        .navbar a::after{
+            content: '';
+            width: 0;
+            height: 3px;
+            background: var(--gradient);
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            transition: 0.5s;
+        }
+        .navbar a:hover::after{
+            width:100%;
+        }
+        #menu-icon{
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10001;
+            display: none;
+        }
+        .header-btn{
+            font-size: 20px;
+        }
+        .header-btn a{
+            padding: 10px 20px;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        .header-btn .sign-in{
+            background: #474fa0;
+            color: #fff;
+            border-radius: 0.5rem;
+        }
+        .header-btn .sign-in:hover{
+            background: var(--main-color);
+
+        }
+        .home{
+            width: 100%;
+            min-height: 100vh;
+            position: relative;
+            background-image: url("https://media.istockphoto.com/vectors/city-light-trails-motion-background-vector-id1342374751?k=20&m=1342374751&s=612x612&w=0&h=6xmlLMt_DfPZPKyetnejCfjI8UaRJj7ecQdpv1PsZIk=");
+            background-repeat: no-repeat;
+            background-position: right;
+            background-size: cover;
+            display: grid;
+            align-items: center;
+            grid-template-columns: repeat(2,1fr);
+        }
+        .text h1{
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            color: #eeeff1;
+        }
+        .text p{
+            margin: 00.5rem 0 1rem;
+            color: #fff;
+            font-size: 1.5rem;
+        }
+        .text span{
+            color: var(--main-color);
+        }
+        .app-stores{
+            display: flex;
+        }
+        .app-stores img{
+            width: 100px;
+            margin-right: 1rem;
+            cursor: pointer;
+        }
+        body{
+            font-family: 'poppins',sans-serif;
+            color: whitesmoke;
+        }
+        .form-container{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: right;
+            gap: 1rem;
+            position: absolute;
+            bottom: 2rem;
+            right: 100px;
+            background-color: #fff;
+            color: black;
+            padding: 20px;
+            border-radius: 0.5rem;
+        }
+        .input-box{
+            flex: 1 1 7rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .input-box span{
+            font-weight: 500;
+        }
+        .input-box input{
+            padding: 7px;
+            outline: none;
+            border: none;
+            background: #eefff1;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+        }
+        .form-container form .btn{
+            flex: 1 1 7rem;
+            padding: 10px 34px;
+            border: none;
+            border-radius: 0.5rem;
+            background: #474fa0;
+            columns: #fff;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        .form-container form .btn:hover{
+            background: var(--main-color);
+        }
+        div{
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .heading{
+            text-align: center;
+            padding: 15px;
+            color: #111213;
+        }
+        .heading span{
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 50px;
+        }
+        .heading h1{
+            font-size: 25px;
+        }
+        .ride-container{
+            display: grid;
+            align-items: center;
+            grid-template-columns: repeat(auto-fit,minmax(250px,auto)) ;
+            gap: 3rem;
+            margin: 2rem;
+            color: black;
+        }
+        .ride-container.box{
+            text-align: center;
+            padding: 40px;
+        }
+        .ride-container .box .bx{
+            font-size: 34px;
+            padding: 20px;
+            background: #fdfeff;
+            border-radius: 0.5rem;
+        }
+        .ride-container .box h1{
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin: 1.4rem 0 0.5rem;
+        }
+        .ride-container .box .bx:hover,.ride-container .bx .bx bxs-map{
+            background: var(--gradient);
+            color: #fff;
+        }
+        .services-container{
+            display: grid;
+            align-items: center;
+            grid-template-columns: repeat(auto-fit,minmax(250px,auto)) ;
+            gap: 1rem;
+            margin: 1rem;
+            color: black;
+        }
+        .services-container .box{
+            padding: 10px;
+            border-radius: 1rem;
+            box-shadow: 1px 4px 41px rgba(0,0,0,0.1);
+        }
+        .services-container .box-img img{
+            border-radius: 1rem;
+            object-fit: cover;
+            object-position: center;
+        }
+        .services-container .box p{
+            padding: 0 10px;
+            border-radius:0.5rem;
+            width: 58px;
+            border:1px solid var(--text-color);
+            margin: 1rem 0 1rem;
+        }
+        .services-container .box h3{
+            font-weight: 500;
+        }
+        .services-container .box h2{
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--main-color);
+            margin: 0.2rem 0 0.5rem;
+        }
+        .services-container .box h2 span{
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+        .services-container .box .btn{
+            display: flex;
+            justify-content: center;
+            background-color: #474fa0;
+            color: #fff;
+            padding: 10px;
+            border-radius: 0.5rem;
+        }
+        .services-container .box .btn:hover{
+            background-color: var(--second-color);
+        }
+        .about-container{
+            display: grid;
+            grid-template-columns: repeat(2,1fr);
+            margin-top: 2rem;
+            text-align: center right;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .about-img img{
+            width: 100%;
+        }
+        .about-text span{
+            font-weight: 500;
+            color: var(--main-color);
+            text-transform: uppercase;
+        }
+        .about-text p{
+            margin: 0.5rem 0 1.4rem;
+            color: #111213;
+        }
+        .about-text .btn{
+            padding: 10px 20px;
+            background: #474fa0;
+            color: white;
+            border-radius: 0.5rem;
+        }
+        .about-text .btn:hover{
+            color: var(--second-color);
+        }
+        .reviews-container{
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(250px,auto));
+            gap: 1rem;
+            margin-top: 0.5rem;
+        }
+        .rev-img{
+            width: 70px;
+            height: 70px;
+        }
+        .rev-img img{
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+            border: 2px solid var(--second-color);
+        }
+        .reviews-container.box{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            box-shadow: 1px 4px 41px rgba(0,0,0,0.1);
+            border-radius: 0.5rem;
+        }
+        .reviews-container.box .star .bx{
+            color: var(--main-color);
+        }
+        .newsletter{
+            background: linear-gradient(to top right,#fe5b3d,#ffac38);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .newsletter h2{
+            color: #fff;
+            font-size: 1.8rem;
+        }
+        .newsletter.box{
+            margin-top: 1rem;
+            background: #eeeff1;
+            border-radius: 0.5rem;
+            padding: 10px 25px;
+            width: 350px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .newsletter.box input{
+            border: none;
+            outline: none;
+        }
+        .newsletter .box.btn{
+            background: #474fa0;
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 0.5rem;
+        }
+        .copyright{
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .copyright p{
+            font-size: 35px;
+        }
+        .social a{
+            color: #444;
+            padding: 10px;
+            font-size: 28px;
+            background-color: #fff;
+        }
+        .bg-1{
+            background-image: url("https://media.istockphoto.com/photos/modern-car-acura-mdx-on-road-at-sunset-picture-id531796028?k=20&m=531796028&s=612x612&w=0&h=qw41qjQX3zruJr4kV6ne7OXqt6hJcDcAhCVayVBRnX0=");
+            width: 100%;
+            height: 100vh;
+        }
+        .bg-2{
+            background-color:white;
+            width: 100%;
+            height: 700px;
+        }
+        .bg-3{
+            background-image:url("https://media.istockphoto.com/photos/mountain-road-landscape-with-rocks-sunny-sky-with-clouds-and-asphalt-picture-id689819118?b=1&k=20&m=689819118&s=170667a&w=0&h=tpfmI6RNB4wKU_JIQicZHl-SLWqWRHMmIo6ESHIUMfI=");
+            width: 100%;
+            height: 150vh;
+        }
+        .bg-4{
+            background-image: url("https://images.unsplash.com/photo-1493238792000-8113da705763?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Y2FyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60");
+            width: 100%;
+            height: 800px;
+        }
+        .bg-5{
+            background-color: white;
+            width: 100%;
+            height: 200px;
+            background-color: #111213;
+        }
+        @media(max-width:991px){
+            header{
+                padding: 18px 40px;
+            }
+            section{
+                padding: 50px 40px;
+            }
+        }
+    </style>
+    <body>
+            <header>
+            <a href="img gallary.html" class="logo"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSTJynGAqpKLoixX31gyTvQhP4lKoDp5WSo3A&usqp=CAU" alt=""></a>
+            <div class="bx bx-menu" id="menu-icon"></div>
+            <ul class="navbar">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#ride">Ride</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#review">Reviews</a></li>
+            </ul>
+            <div class="header-btn">
+                <a href="#" class="sign-up">Sign-Up</a>
+                <a href="#" class="sign-in">Sign-in</a>
+            </div>
+        </div>
+</header>
+        <div class="bg-1">
+            <section class="home" id="home">
+                <div class="text">
+                <h1>DRIVE IN A <span>SANITISED CAR</span></h1><br>
+                   <p> Self Drive Car Rental in Chennai</p><br>
+                <div class="app-stores"><br>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9mp0c5-Mumw0e43izOrW08OZIqUrv0hEyKw&usqp=CAU">           
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXSJipws2SJhteDRZ86yvUp3WRBkKbD6lW3Q&usqp=CAU">           
+                </div> 
+            </div>
+            <div class="form-container">
+                <form action="">
+                    <div class="input-box">
+                        <span>Location</span><br>
+                        <input type="search" name="" id="" placeholder="search places"><br><br>
+                    </div>
+                    <div class="input-box">
+                        <span>pick-up Date</span><br>
+                        <input type="date" name="" id=""><br><br>
+                    </div>
+                    <div class="input-box">
+                        <span>Return Date</span><br>
+                        <input type="date" name="" id=""><br><br>
+                    </div>
+                    <input type="submit" name="" id="" class="btn"><br>
+                </form>
+            </div>   
+            </section>
+        </div>
+        <div class="bg-2">
+                <div class="heading">
+                    <section class="ride" id="ride">
+                <span>How it works</span>
+                <h1>We simplified car rentals, so you can focus on what's important to you.</h1>
+            </div>
+            <div class="ride-container">
+                <div class="box">
+                    <i class='bx bxs-buildings'></i>
+                    <h2>Fuel Cost Included</h2>
+                    <p>Don’t worry about mileage! All fuel costs are included. If you refill fuel, we’ll pay you back!</p>
+                </div>
+
+                <div class="box">
+                    <i class='bx bx-search-alt-2'></i>
+                    <h2>No Hidden Charges</h2>
+                    <p>Our prices include taxes and insurance.
+                        What you see is what you really pay!</p>
+                </div>
+
+                <div class="box">
+                    <i class='bx bxs-gift'></i>
+                    <h2>Flexi Pricing Packages</h2>
+                    <p>One size never fits all! Choose a balance of time and kilometers that works best for you</p>
+                </div>
+
+
+                <div class="box">
+                    <i class='bx bxs-map'></i>
+                    <h2>Choose the location</h2>
+                    <p>Our cars have all-India permits.Just remember to pay state tolls and entry taxes.</p>
+                </div>
+
+                <div class="box">
+                    <i class='bx bx-plus-medical'></i>
+                    <h2>24x7 Roadside Assistance</h2>
+                    <p>We have round-the-clock, pan India partners. Help is never far away from you.</p>
+                </div>
+
+                <div class="box">
+                    <i class='bx bxs-car-crash'></i>
+                    <h2>Damage Insurance</h2>
+                    <p>All your bookings include damage insurance! Drive safe, but don’t worry!</p>
+                </div>
+            </div>
+        </section>
+        </div>
+        <div class="bg-3">
+            <section class="service" id="services">
+            <div class="heading">
+                <span>Best Services</span>
+                <h1>Explore Out Top Deals  From Top Rated Dealers</h1>
+            </div>
+            <div class="services-container">
+                <div class="box">
+                    <div class="box-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO5qj1uSYxPJHG3Sqorc-tkIQj7vgufLK03Q&usqp=CAU" alt="" width="250px" height="200px">
+                    </div>
+                    <p>2017</p>
+                    <h3>2018 Thar Jeep</h3>
+                    <h2>$58500 ! $358 <span>/Month</span></h2>
+                    <a href="#" class="btn">Rent Now</a>
+                </div>
+                <div class="box">
+                    <div class="box-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdyLzFNaL0GfzbxjqlUVArPrZ8VQUqhDU32g&usqp=CAU" alt="" width="250px" height="200px">
+                    </div>
+                    <p>2017</p>
+                    <h3>2018 Thar Jeep</h3>
+                    <h2>$58500 ! $358 <span>/Month</span></h2>
+                    <a href="#" class="btn">Rent Now</a>
+                </div>
+                <div class="box">
+                    <div class="box-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShoBLxEU2XmjazMcenM1sf8-blQudvViyG4w&usqp=CAU" alt="" width="250px" height="200px">
+                    </div>
+                    <p>2017</p>
+                    <h3>2018 Thar Jeep</h3>
+                    <h2>$58500 ! $358 <span>/Month</span></h2>
+                    <a href="#" class="btn">Rent Now</a>
+                </div>
+                <div class="box">
+                    <div class="box-img">
+                        <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGNhcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" width="250px" height="200px">
+                    </div>
+                    <p>2017</p>
+                    <h3>2018 Thar Jeep</h3>
+                    <h2>$58500 ! $358 <span>/Month</span></h2>
+                    <a href="#" class="btn">Rent Now</a>
+                </div>
+                <div class="box">
+                    <div class="box-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRbnfeipiW8yefuVqfmkCi3MJu1EBTEQzEEbQ&usqp=CAU" alt="" width="250px" height="200px">
+                    </div>
+                    <p>2017</p>
+                    <h3>2018 Thar Jeep</h3>
+                    <h2>$58500 ! $358 <span>/Month</span></h2>
+                    <a href="#" class="btn">Rent Now</a>
+                </div>
+                <div class="box">
+                    <div class="box-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTU6ZLkPoSNrdh72U77tG_W8qkMNvtDtEFyPQ&usqp=CAU" alt="" width="250px" height="200px">
+                    </div>
+                    <p>2017</p>
+                    <h3>2018 Thar Jeep</h3>
+                    <h2>$58500 ! $358 <span>/Month</span></h2>
+                    <a href="#" class="btn">Rent Now</a>
+                </div>
+                <div class="box">
+                    <div class="box-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTrTJjjQ9b6jpMUGZ_VYiyrJvYf8mAviN4ldw&usqp=CAU" alt="" width="250px" height="200px">
+                    </div>
+                    <p>2017</p>
+                    <h3>2018 Thar Jeep</h3>
+                    <h2>$58500 ! $358 <span>/Month</span></h2>
+                    <a href="#" class="btn">Rent Now</a>
+                </div>
+                <div class="box">
+                    <div class="box-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSets1w6oqih7V7aGnJ8srcvV90spB0FuZT-g&usqp=CAU" alt="" width="250px" height="200px">
+                    </div>
+                    <p>2017</p>
+                    <h3>2018 Thar Jeep</h3>
+                    <h2>$58500 ! $358 <span>/Month</span></h2>
+                    <a href="#" class="btn">Rent Now</a>
+                </div>
+            </div>
+        </section>
+        </div>
+        <div class="bg-4">
+            <section class="about" id="about"> 
+                <div class="heading">
+                    <span>About Us</span>
+                    <h1>Best Customer Experiences</h1>
+                </div>
+                <div class="about-container">
+                    <div class="about-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZxQmPPfFmD13eGrVt0j0I9pr8e_jlOspb4A&usqp=CAU" alt="">
+                        <div class="about-text">
+                            <span>About Us</span>
+                            <p>Supermilers don't have to pay our standard security deposit ever.Earn Z - point for every Booking and redeem for free rides</p>
+                            <p>Supermilers don't have to pay our standard security deposit ever.Earn Z - point for every Booking and redeem for free rides</p>
+                            <a href="#" class="btn">learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div class="bg-5">
+            <section class="review" id="review">
+            <div class="reviews-container">
+                <div class="box">
+                    <div class="rev-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXn1UnAe1KRXWkbOUdtFGqubS4kxtLu7sGWw&usqp=CAU" alt="">
+                    </div>
+                    <h2>VIMAL</h2>
+                    <div class="star">
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star-half'></i>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="rev-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXn1UnAe1KRXWkbOUdtFGqubS4kxtLu7sGWw&usqp=CAU" alt="">
+                    </div>
+                    <h2>VIMAL</h2>
+                    <div class="star">
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star-half'></i>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="rev-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8MapERAJd6UctfsrHJhmehVVHHbPUXokv1Q&usqp=CAU" alt="">
+                    </div>
+                    <h2>SUGAN</h2>
+                    <div class="star">
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star-half'></i>
+                        <i class='bx bx-star'></i>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <div class="rev-img">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8MapERAJd6UctfsrHJhmehVVHHbPUXokv1Q&usqp=CAU" alt="">
+                    </div>
+                    <h2>PREETHI</h2>
+                    <div class="star">
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star'></i>
+                        <i class='bx bxs-star-half'></i>
+                        <i class='bx bx-star'></i>
+                    </div>
+                </div>
+
+            </div>
+            </section>
+        </div>
+        <div class="bg-1">
+            <section class="newsletter">
+                <h2>subscribe to Newsletter</h2>
+                <div class="box">
+                    <input type="text" placeholder="enter your Email....">
+                    <a href="#" class="btn">Subscribe</a>
+                </div>
+            </section>
+            <div class="copyright">
+                <p>&#169, all rights are reserved</p>
+            </div>
+            <div class="social">
+                <a href="#"><i class='bx bxl-facebook-circle'></i></a>
+                <a href="#"><i class='bx bxl-instagram-alt'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+            </div>
+        </div>
+    </body>
+</html>
